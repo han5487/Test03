@@ -1,6 +1,7 @@
 package com.ubot.lis.function.test;
 
 import com.itextpdf.io.font.PdfEncodings;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -9,17 +10,19 @@ import com.itextpdf.kernel.pdf.canvas.draw.DashedLine;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.List;
 import com.itextpdf.layout.element.ListItem;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Tab;
 import com.itextpdf.layout.element.TabStop;
 import com.itextpdf.layout.element.Table;
-import com.itextpdf.layout.element.Text;
-import com.itextpdf.layout.property.ListNumberingType;
+import com.itextpdf.layout.property.HorizontalAlignment;
 import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.layout.property.VerticalAlignment;
+import com.itextpdf.text.Chunk;
 
 public class Practice {
 
@@ -41,9 +44,14 @@ public class Practice {
 
 		Document document = new Document(pdf);
 
-		document.add(new Paragraph("聯邦商業銀行").addStyle(title22));
+		Image image = new Image(ImageDataFactory.create("D:\\test\\1007-01.png"));
 
-		document.add(new Paragraph("綜 合 授 信 契 約 書").addStyle(title22));
+//		document.add(image);
+
+		document.add(new Paragraph("聯邦商業銀行").add(image).setHorizontalAlignment(HorizontalAlignment.LEFT)
+				.setVerticalAlignment(VerticalAlignment.MIDDLE).addStyle(title22));
+
+		document.add(new Paragraph("綜 合 授 信 契 約 書").addStyle(title26));
 
 		document.add(new Paragraph("客戶名稱：XXXX股份有限公司").addStyle(title20));
 		document.add(new Paragraph("授信帳號：002660001234").addStyle(title20));
@@ -53,11 +61,53 @@ public class Practice {
 		document.add(new Paragraph("AO(助理)：        經辦：        核定：").addStyle(normal15));
 		document.add(new Paragraph("02233(110.12修訂)").addStyle(normal15));
 
-		for (int i = 1; i <= 15; i++) {
-			document.add(new Paragraph("itext0" + i).add(new Tab())
-					.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + i))
-					.addStyle(normal11));
-		}
+		document.add(new Paragraph("第壹章、授信共同條款").add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+
+		document.add(new Paragraph("第貳章、個別授信約定條款").add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+
+		document.add(new Paragraph("第一節、營運週轉借款(一般週轉金)").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第二節、透支、存摺存款融資(非證券公司)").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第三節、有價證券(集保、優質股票)融資").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第四節、委任保證").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第五節、墊付國內票款、貼現").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第六節、票據承兌/保證").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第七節、開發國內即期/遠期信用狀").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第九節、外銷貸款").setFirstLineIndent(45).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第參章、連帶保證條款").add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("第肆章、個別商議條款").add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(
+				new Paragraph("附件").add(new Tab()).addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine()))
+						.add(String.valueOf("" + 1)).addStyle(normal11));
+		document.add(new Paragraph("附件一：核貸通知書").setFirstLineIndent(25).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
+		document.add(new Paragraph("附件二：企業金融部金融服務各項費用收取標準").setFirstLineIndent(25).add(new Tab())
+				.addTabStops(new TabStop(550, TabAlignment.RIGHT, new DashedLine())).add(String.valueOf("" + 1))
+				.addStyle(normal11));
 
 		document.add(new Paragraph("綜 合 授 信 契 約 書").addStyle(title22));
 
@@ -399,6 +449,7 @@ public class Practice {
 
 		cell = new Cell(1, 50).add(new Paragraph("核准日期：    年   月   日").addStyle(normal11));
 		table.addCell(cell);
+
 		cell = new Cell(1, 50).add(new Paragraph("核准號碼：                ").addStyle(normal11));
 		table.addCell(cell);
 
@@ -423,35 +474,726 @@ public class Practice {
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
 		table.addCell(cell);
 
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
 		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
 		table.addCell(cell);
 
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
 		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
 		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
 		table.addCell(cell);
 
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
 		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
 		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
 		table.addCell(cell);
 
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
 		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
 		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
 		table.addCell(cell);
 
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
 		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
 		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
 		table.addCell(cell);
 
 		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(6, 10).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("核准有效期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 8).add(new Paragraph("動用方式/期間").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("利率/手續費率").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("償還方式").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("開辦費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+		cell = new Cell(1, 8).add(new Paragraph("擔保/動撥條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 22).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("").addStyle(normal11));
+		cell.setMinHeight(15);
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("其他條件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("").addStyle(normal11));
+		cell.setMinHeight(50);
 		table.addCell(cell);
 
 		document.add(table);
 
 		document.add(new Paragraph("附件二：企業金融部金融服務各項費用收取標準").addStyle(title22));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 25).add(new Paragraph("收費項目").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("收費金額").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("一、一般企金授信案件開辦費或帳戶管理費(不含個人信用貸款及第三項案件)★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("依核准額度0.1%以上計收或依動撥金額0.1%以上逐次計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("二、個人信用貸款★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("總收費：最高新臺幣9,000元。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("三、其他企金授信案件").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(2, 25).add(new Paragraph("1.中小企業簡便貸款及企業家小額貸款★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("徵信費：每一案件最高一次計收新臺幣1,000元。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("開辦費：依核准額度1%以上計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(2, 25).add(new Paragraph("2.薪轉企業週轉貸款★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("徵信費：每一案件最低以新臺幣500元計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("開辦費：依核准額度0.2%以上計收").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("3.國內應收票據簡易融資★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("帳戶管理費：每筆融資新臺幣300元。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("4.法拍或標售案代墊款★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("開辦費：依核准額度1%以上計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("5.應收帳款收買★").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("管理費：依每筆收買應收帳款金額0.75%以上計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("四、申請授信條件變更手續費").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("新臺幣5,000元。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("五、提前清償違約金").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 25).add(new Paragraph("依提前清償金額1%以上計收。").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph("註1：註記★之授信種類，係必須收取相關費用。").addStyle(normal11));
+		document.add(
+				new Paragraph("註2：各項貸款手續費收費標準及收費方式調整時，於生效日60日前公告於聯邦銀行營業場所及網站(網址：www.ubot.com.tw)。").addStyle(normal11));
+		document.add(new Paragraph("註3：上開收費金額均以新臺幣計收。").addStyle(normal11));
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("立 約 人(即借款人)：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("立約人與  貴行授信往來之印鑑以下列共☐壹式☐貳式☐     式，憑任壹式有效。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、立約人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、立約人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用立約人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。立約人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "立約人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n" + "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("保 證 人1：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("保證人與  貴行授信往來之印鑑以下列共☐壹式☐貳式☐     式，憑任壹式有效。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、保證人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、保證人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用保證人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。保證人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "保證人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n"
+				+ "三、保證人願以本金新臺幣                                   元及其利息、遲延利息、違約金及其他從屬主債務之負擔為限額，與立約人負連帶清償責任。\r\n"
+				+ "保證人 ☐願意☐不願意 接收貴行每年一次以書面通知當月基準日所負保證債務金額。(限第參章之連帶保證條款選擇「未定期間保證」者，本項未勾選者，視為「願意」。選擇「定有期間保證」者，免勾選。)\r\n"
+				+ "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("保 證 人2：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("保證人與  貴行授信往來之印鑑以下列共☐壹式☐貳式☐     式，憑任壹式有效。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("131231").addStyle(normal11));
+		cell.setMinHeight(150);
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("1313").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、保證人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、保證人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用保證人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。保證人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "保證人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n"
+				+ "三、保證人願以本金新臺幣                                   元及其利息、遲延利息、違約金及其他從屬主債務之負擔為限額，與立約人負連帶清償責任。\r\n"
+				+ "保證人 ☐願意☐不願意 接收貴行每年一次以書面通知當月基準日所負保證債務金額。(限第參章之連帶保證條款選擇「未定期間保證」者，本項未勾選者，視為「願意」。選擇「定有期間保證」者，免勾選。)\r\n"
+				+ "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("保 證 人3：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("保證人與  貴行授信往來之印鑑以下列共☐壹式☐貳式☐     式，憑任壹式有效。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、保證人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、保證人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用保證人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。保證人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "保證人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n"
+				+ "三、保證人願以本金新臺幣                                   元及其利息、遲延利息、違約金及其他從屬主債務之負擔為限額，與立約人負連帶清償責任。\r\n"
+				+ "保證人 ☐願意☐不願意 接收貴行每年一次以書面通知當月基準日所負保證債務金額。(限第參章之連帶保證條款選擇「未定期間保證」者，本項未勾選者，視為「願意」。選擇「定有期間保證」者，免勾選。)\r\n"
+				+ "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("保 證 人4：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("保證人與  貴行授信往來之印鑑以下列共☐壹式☐貳式☐     式，憑任壹式有效。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、保證人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、保證人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用保證人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。保證人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "保證人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n"
+				+ "三、保證人願以本金新臺幣                                   元及其利息、遲延利息、違約金及其他從屬主債務之負擔為限額，與立約人負連帶清償責任。\r\n"
+				+ "保證人 ☐願意☐不願意 接收貴行每年一次以書面通知當月基準日所負保證債務金額。(限第參章之連帶保證條款選擇「未定期間保證」者，本項未勾選者，視為「願意」。選擇「定有期間保證」者，免勾選。)\r\n"
+				+ "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("擔 保 物 提 供 人1：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("擔保物為集保股票時，應留存集保帳戶印鑑；為現股時，應留存股務印鑑。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、擔保物提供人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、擔保物提供人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用擔保物提供人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。擔保物提供人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "擔保物提供人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n" + "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph(""));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("擔 保 物 提 供 人2：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("地址：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("營利事業統一編號/國民身分證統一編號：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("擔保物為集保股票時，應留存集保帳戶印鑑；為現股時，應留存股務印鑑。").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 1).add(new Paragraph("對保簽名").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 30).add(new Paragraph("對保地點：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("對保時間：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("對保人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 15).add(new Paragraph("核定：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 20).add(new Paragraph("查驗人：").addStyle(normal11));
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("審閱及個資商議條款：\r\n" + "一、擔保物提供人確認本契約條款內容業經合理時間審閱並同意，且各收執契約影本乙份，並簽章如上。\r\n"
+				+ "二、擔保物提供人知悉，貴行得提供個人資料予關係企業，並於其營業目的或貴行蒐集、處理、利用個人資料之告知說明所列相同特定目的範圍內，蒐集、處理、利用擔保物提供人之個人資料，並得提供予該等關係企業所委任處理營業相關事務之人。擔保物提供人亦暸解，如不同意上開事項，貴行及貴行之關係企業將可能無法主動提供除本授信以外其他之服務或優惠活動。\r\n"
+				+ "擔保物提供人 ☐同意☐不同意 貴行得提供個人資料予關係企業。(未勾選視為「不同意」；法人戶免填)\r\n" + "").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
 
 		document.close();
 	}
