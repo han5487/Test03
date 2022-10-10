@@ -22,13 +22,12 @@ import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.layout.property.VerticalAlignment;
-import com.itextpdf.text.Chunk;
 
 public class Practice {
 
 	public static void main(String[] args) throws Exception {
 
-		PdfWriter writer = new PdfWriter("D:\\test\\新增資料夾 (2)\\other.pdf");
+		PdfWriter writer = new PdfWriter("F:\\司資料\\Test\\綜合授信契約書1009-01.pdf");
 		PdfDocument pdf = new PdfDocument(writer);
 
 		PdfFont baseFont = PdfFontFactory.createFont("C:/LIS_PDFFONT/UBOT_KAI.TTF", PdfEncodings.IDENTITY_H, false);
@@ -44,12 +43,15 @@ public class Practice {
 
 		Document document = new Document(pdf);
 
-		Image image = new Image(ImageDataFactory.create("D:\\test\\1007-01.png"));
+		// Image image = new Image(ImageDataFactory.create("D:\\test\\1007-01.png"));
 
-//		document.add(image);
+		// document.add(image);
 
-		document.add(new Paragraph("聯邦商業銀行").add(image).setHorizontalAlignment(HorizontalAlignment.LEFT)
-				.setVerticalAlignment(VerticalAlignment.MIDDLE).addStyle(title22));
+		// document.add(new
+		// Paragraph("聯邦商業銀行").add(image).setHorizontalAlignment(HorizontalAlignment.LEFT)
+		// .setVerticalAlignment(VerticalAlignment.MIDDLE).addStyle(title22));
+
+		document.add(new Paragraph("聯邦商業銀行").addStyle(title26));
 
 		document.add(new Paragraph("綜 合 授 信 契 約 書").addStyle(title26));
 
@@ -154,9 +156,15 @@ public class Practice {
 				.setListSymbol("七、"));
 
 		list.add(new ListItem("本契約有關利息、手續費、外幣匯率、遲延利息、違約金之計算方式，除與貴行另訂之授信相關約據別有約定外，悉依下列方式計算：").setListSymbol("八、"));
+
 		list.add(new ListItem("本契約所稱均利型指數利率及基準利率，說明如下：").setListSymbol("九、"));
 		list.add(new ListItem("立約人對貴行所負之一切債務，如有下列情形之一時，無須由貴行事先通知或催告，貴行得減少對立約人之授信額度或縮短授信期間，或視為全部到期：")
 				.setListSymbol("十、"));
+
+		document.add(list);
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem("立約人若擬依公司法進行公司分割時，除應於董事會作成分割計畫書之日起三日內通知貴行外，貴行並得於得知立約人擬議分割後，減少立約人之授信額度或縮短授信期間或視為全部到期。")
 				.setListSymbol("十一、"));
 		list.add(new ListItem(
@@ -181,14 +189,16 @@ public class Practice {
 						.setListSymbol("十九、"));
 		list.add(new ListItem("立約人倘不依約履行清償債務時，如立約人及保證人有他項財產存於貴行或如將來貴行代立約人收到款項，貴行均得有權留置或抵償。").setListSymbol("二十、"));
 
-//		List list = new List().setFont(baseFont);
+		document.add(list);
+
+		list = new List().setFont(baseFont);
 
 		list.add(new ListItem(
 				"立約人不依約履行責任而致發生訴訟時，立約人及保證人同意貴行為取償或保全本契約債權而支出之徵信費、倉儲費、運輸費、律師費、訴訟費用、強制執行費用等必要費用，均由立約人及保證人負擔，並授權貴行得由立約人及保證人名下存款帳戶內，免存款存摺及取款憑條予以扣抵取償。但經法院判決貴行對立約人或保證人並無債權存在時，不在此限。")
 						.setListSymbol("二十一、"));
 		list.add(new ListItem("立約人及保證人同意貴行為金融資產證券化目的而為債權讓與時，得以公告方式取代通知。").setListSymbol("二十二、"));
 		list.add(new ListItem(
-				"立約人及保證人同意貴行因債權讓與、第三人代償或承擔債務需要之特定目的，得於為達成前述特定目的之必要範圍內，將立約人之基本資料及債務相關資料(包括但不限於授信餘額、利率、利息、違約金、清償日、訖息日及授信帳戶之歷史交易紀錄等)提供予前述債權受讓人、債權鑑價查核人及第三人，惟請貴行應於債權讓與契約約定或以其他方式告知該資料利用人應遵照銀行法、個人資料保護法及其他相關法令之保密規定，不得將該等有關資料洩漏予其他無關之第三人。")
+				"約人及保證人同意貴行因債權讓與、第三人代償或承擔債務需要之特定目的，得於為達成前述特定目的之必要範圍內，將立約人之基本資料及債務相關資料(包括但不限於授信餘額、利率、利息、違約金、清償日、訖息日及授信帳戶之歷史交易紀錄等)提供予前述債權受讓人、債權鑑價查核人及第三人，惟請貴行應於債權讓與契約約定或以其他方式告知該資料利用人應遵照銀行法、個人資料保護法及其他相關法令之保密規定，不得將該等有關資料洩漏予其他無關之第三人。")
 						.setListSymbol("二十三、"));
 		list.add(new ListItem(
 				"立約人及保證人同意授信後如未按時依約繳款，貴行將依主管機關規定報送登錄聯合徵信中心信用不良紀錄，而可能影響立約人及保證人現有卡片之使用及未來申辦其他貸款(含現金卡)或信用卡之權益。上述信用不良紀錄之揭露期間請上聯合徵信中心網站「社會大眾專區」之「資料揭露期限」查詢。")
