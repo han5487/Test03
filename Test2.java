@@ -1,51 +1,63 @@
 package com.ubot.lis.function.test;
 
-import java.io.FileNotFoundException;
-
 import com.itextpdf.io.font.PdfEncodings;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.Style;
 import com.itextpdf.layout.element.List;
 import com.itextpdf.layout.element.ListItem;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.property.ListNumberingType;
+import com.itextpdf.layout.property.TextAlignment;
 
-public class Test2 {
+public class Test {
 
 	public static void main(String[] args) throws Exception {
 
-		PdfWriter writer = new PdfWriter("D:\\test\\新增資料夾 (2)\\test2.pdf");
+		PdfWriter writer = new PdfWriter("F:\\司資料\\Test\\Test1009-01.pdf");
 		PdfDocument pdf = new PdfDocument(writer);
 
 		PdfFont baseFont = PdfFontFactory.createFont("C:/LIS_PDFFONT/UBOT_KAI.TTF", PdfEncodings.IDENTITY_H, false);
+		// 設定字形.字體大小26.粗體.本文置中
+
+		Style title26 = new Style().setFont(baseFont).setFontSize(26).setBold().setTextAlignment(TextAlignment.CENTER);
+
+		Style normal15 = new Style().setFont(baseFont).setFontSize(15);
 
 		Document document = new Document(pdf);
-		
-		document.add(new Paragraph("1213132131"));
 
-		List list = new List().setFont(baseFont);
+		document.add(new Paragraph("聯邦商業銀行").addStyle(title26));
 
-		list.add("第一行").setListSymbol("");
+		List list = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
 
-		list.add(new ListItem("item 1itemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitemitem").setListSymbol("一、"));
-		list.add(new ListItem("item 2").setListSymbol("二、"));
-		list.add(new ListItem("item 3").setListSymbol("三、"));
-		list.add(new ListItem("item 4").setListSymbol("四、"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
+		list.add(new ListItem("口口口"));
 
-		document.add(list.setMarginLeft(20));
-		
-		List list1 = new List().setFont(baseFont);
+		// list.add(new ListItem("口口口").setListSymbol("一、"));
+		// list.add(new ListItem("口口口").setListSymbol("二、"));
+		//
+		// document.add(list);
+		//
+		// list = new List().setFont(baseFont);
 
-		list1.add("123355");
+		// list.add(new ListItem("本契約所稱均利型指數利率及基準利率，說明如下：").setListSymbol("九、"));
+		// list.add(new ListItem("口口口").setListSymbol("十、"));
+		// list.add(new ListItem("、口口口").setListSymbol("十一"));
 
-		list1.add(new ListItem("item").setListSymbol("(一)、"));
-		list1.add(new ListItem("item").setListSymbol("(二)、"));
-
-		document.add(list1);
+		document.add(list);
 
 		document.close();
 	}
-
 }
