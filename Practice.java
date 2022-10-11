@@ -18,20 +18,19 @@ import com.itextpdf.layout.element.Tab;
 import com.itextpdf.layout.element.TabStop;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.ListNumberingType;
 import com.itextpdf.layout.property.TabAlignment;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
-import com.itextpdf.layout.property.VerticalAlignment;
 
 public class Practice {
 
 	public static void main(String[] args) throws Exception {
 
-		PdfWriter writer = new PdfWriter("F:\\司資料\\Test\\綜合授信契約書1009-01.pdf");
+		PdfWriter writer = new PdfWriter("D:\\Test\\綜合授信契約書1009-01.pdf");
 		PdfDocument pdf = new PdfDocument(writer);
 
 		PdfFont baseFont = PdfFontFactory.createFont("C:/LIS_PDFFONT/UBOT_KAI.TTF", PdfEncodings.IDENTITY_H, false);
-		// 設定字形.字體大小26.粗體.本文置中
 
 		Style title26 = new Style().setFont(baseFont).setFontSize(26).setBold().setTextAlignment(TextAlignment.CENTER);
 
@@ -157,11 +156,114 @@ public class Practice {
 
 		list.add(new ListItem("本契約有關利息、手續費、外幣匯率、遲延利息、違約金之計算方式，除與貴行另訂之授信相關約據別有約定外，悉依下列方式計算：").setListSymbol("八、"));
 
+		document.add(list);
+
+		list = new List().setFont(baseFont);
+
+		List list1 = new List().setFont(baseFont);
+
+		list1.add(new ListItem(
+				"利息：立約人對貴行所負一切債務，悉依貴行之核貸通知書或立約人逐筆動用所出具之授信額度動用申請書、借據、變更契據契約書等約定之利率計付利息。如無約定者，願依照債務發生當日貴行基準利率(季)加碼年息3%計付。")
+						.setListSymbol("(一)"));
+
+		list1.add(new ListItem("利息計算方式依幣別採以下方式計算：").setListSymbol(""));
+
+		document.add(list1.setMarginLeft(25));
+
+		List list3 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+		list3.add(new ListItem(
+				"新臺幣授信之授信期間在1年以內者，按日計息。1年(含閏年)，以365日為計息基礎，即以每日放款餘額之和(以下稱本金)，先乘以其年利率，再除以365，即得每日利息額。授信期間超過1年者，足月部分按月計息，即以本金先乘以其年利率，再除以12，即得每月利息額，另不足月部分，則按實際天數計息，1年(含閏年)以365日為計息基礎，其餘計算方式比照前段說明。"));
+		list3.add(new ListItem("外幣授信按日計息，依國際慣例以360日為計息基礎(但SGD、GBP、HKD、ZAR則為365日)，即以本金先乘以其年利率，再除以360(或365)，即得每日利息額。"));
+		document.add(list3.setMarginLeft(50));
+
+		List list2 = new List().setFont(baseFont);
+
+		list2.add(new ListItem("手續費：各項手續費悉依核貸通知書、授信額度動用申請書所載，或按附件二之金融服務各項費用收取標準計收。").setListSymbol("(二)"));
+		list2.add(new ListItem(
+				"外幣匯率：外幣授信之授信額度、現欠金額之計算，得依貴行掛牌匯率折算為新臺幣，嗣後如因匯率變動致使已動用之外幣授信餘額超逾個別授信單項額度或授信總額度時，其超逾部分，立約人仍負清償責任，立約人願依到期日或視同到期日貴行掛牌匯率重新計算約當之新臺幣數額。清償時，立約人同意依貴行掛牌匯率折算為新臺幣，計算應償還金額。")
+						.setListSymbol("(三)"));
+		list2.add(new ListItem(")遲延利息：逾期付息或到期未履行債務(包含各項手續費、貴行墊付費用或墊款)時，自逾期之日起，依下列方式計付遲延利息：").setListSymbol("(四)"));
+
+		document.add(list2.setMarginLeft(25));
+
+		List list4 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+		list4.add(new ListItem(
+				"新臺幣：本金自應還款日、費用自應付日或墊付日、墊款自墊款日起，仍依貴行之核貸通知書或其他文件所載之利(費)率計付遲延利息；如核貸通知書等文件未記載時，則依貴行基準利率(季)加碼年息5%計付。"));
+		list4.add(new ListItem("外幣：本金自應還款日、費用自應付日或墊付日、墊款自墊款日起，依當時各該幣別貴行掛牌利率與新臺幣基準利率(季)加碼年息5.5%之孰高者計付。"));
+		document.add(list4.setMarginLeft(50));
+
+		list2 = new List().setFont(baseFont);
+
+		list2.add(new ListItem(
+				"違約金：逾期付息或到期未履行債務(包含各項手續費、貴行墊付費用或墊款)時，自逾期之日起，除依前款計付遲延利息外，並依下列計算基準，逾期六個月以內依約定利率百分之十，逾期超過六個月部分依約定利率百分之二十計付違約金：")
+						.setListSymbol("(五)"));
+
+		document.add(list2.setMarginLeft(25));
+
+		List list5 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list5.add(new ListItem("授信期間未屆至者，本金自應還款日起、利息自應繳息日起，依當期應攤還本金或當期應繳利息金額計付。"));
+		list5.add(new ListItem("授信期間屆至或經貴行主張加速條款視為到期，以及應付債務(即費用、墊款)屆期未償還者，自到期日或視為到期經列報逾期放款日(以孰先屆至為準)起，依未償還本金餘額計付。"));
+		document.add(list5.setMarginLeft(50));
+
 		list.add(new ListItem("本契約所稱均利型指數利率及基準利率，說明如下：").setListSymbol("九、"));
+
+		document.add(list);
+
+		List list6 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list6.add(new ListItem(
+				"均利型指數利率之構成：以「台灣銀行、合作金庫、土地銀行、第一銀行、華南銀行及彰化銀行一年期定期儲蓄存款固定利率之平均利率及貨幣市場90天短期票券次級市場平均利率各占50%之加權平均利率」，其中貨幣市場90天短期票券次級市場利率平均利率值採集保結算所TAIBIR 02之90天短期票券次級市場利率+0.044%之平均值。")
+						.setListSymbol("(一)"));
+		list6.add(new ListItem("基準利率之構成：均利型指數利率加固定加碼即為基準利率，該固定加碼係貴行參考企業金融業務之各項費用暨作業成本，以及同業利率水準等因素後訂定，並得於每年度六月份調整。")
+				.setListSymbol("(二)"));
+		list6.add(new ListItem("均利型指數利率及基準利率之按月調整：每個月定期調整一次，即新利率生效日分別為每月15日(取樣日為每月1日~13日)。").setListSymbol("(三)"));
+		list6.add(new ListItem(
+				"均利型指數利率及基準利率之按季調整：每三個月定期調整一次，即新利率生效日分別為每年度3月15日(取樣日為每年度3月1日~3月13日)，6月15日(取樣日為每年度6月1日~6月13日)，9月15日(取樣日為每年度9月1日~9月13日)，12月15日(取樣日為每年度12月1日~12月13日)。按日計息之新臺幣借款、墊款、保證等債務，逢閏年仍以365日為計息基礎。")
+						.setListSymbol("(四)"));
+		list6.add(new ListItem("新利率生效日如遇假日以次一營業日為生效日。取樣日亦以營業日為取樣基礎，計算時皆以小數點以下2位為準，小數點以下第3位四捨五入。").setListSymbol("(五)"));
+		list6.add(new ListItem(
+				"參考銀行若有合併、被合併、消滅、停業、破產、重整或有銀行法第六十二條遭勒令停業、監管、接管情事，或停售一年期定期儲蓄存款產品時，貴行得經由公告逕行更換參考銀行，並指定其他本國銀行代之。")
+						.setListSymbol("(六)"));
+		list6.add(new ListItem("倘嗣後集保結算所無法或不再提供90天短期票券次級市場利率，立約人同意貴行得逕行更換其他適當之參考指標或調整續存參考指標之計算權數，並公告於貴行營業處所及貴行網站，以供查詢。")
+				.setListSymbol("(七)"));
+		list6.add(new ListItem("均利型指數利率及基準利率公告於貴行營業大廳看板及網站。").setListSymbol("(八)"));
+		list6.add(new ListItem(
+				"貴行調整均利型指數利率(或基準利率)時，除應於營業場所及網站公告外，雙方另約定以電話通知、或簡訊通知、或書面通知、或電子郵件、或存摺登錄、或繳息收據列印、或自動櫃員機螢幕顯示或發行量前四大之ㄧ報紙公告等方式之ㄧ為告知。如貴行未依前述約定方式之一為告知者，應以書面通知方式為之。")
+						.setListSymbol("(九)"));
+
+		document.add(list6.setMarginLeft(25));
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem("立約人對貴行所負之一切債務，如有下列情形之一時，無須由貴行事先通知或催告，貴行得減少對立約人之授信額度或縮短授信期間，或視為全部到期：")
 				.setListSymbol("十、"));
 
 		document.add(list);
+
+		List list7 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+		list7.add(new ListItem("任何一宗債務不依約清償本金時。").setListSymbol("(一)"));
+		list7.add(new ListItem("依破產法或消費者債務清理條例聲請更生、清算、和解、聲請宣告破產、聲請公司重整、經票據交換所通知拒絕往來、停止營業，清理債務時。").setListSymbol("(二)"));
+		list7.add(new ListItem("依約定原負有提供擔保之義務而無法提供時。").setListSymbol("(三)"));
+		list7.add(new ListItem("立約人死亡而其繼承人未承擔全部債務(含拋棄繼承)時。").setListSymbol("(四)"));
+		list7.add(new ListItem("立約人之財產受刑事扣押或沒收時。").setListSymbol("(五)"));
+		list7.add(new ListItem(
+				"除前述各款外，貴行因有保全債權之必要，經契約具體約定之情事，或立約人與貴行授信往來，經貴我約定於所提供任一發票人或背書人之備償票據有到期未能兌現情事者，或授信前所為陳述或提供之資料，有虛偽不實或隱匿等違背誠信之行為，致貴行為錯誤評估者，或違反約定或承諾之事項或其以借款進行所營事業之計畫或其資產，發生不利之變化，不能成就，被撤銷許可成為不合法或遭受損失等情事，而致貴行認為有保全債權之必要時。")
+						.setListSymbol("(六)"));
+		list7.add(new ListItem("立約人於其他金融機構任何一宗債務未依約清償本金，或視為全部到期者。").setListSymbol("(七)"));
+		list7.add(
+				new ListItem("立約人對貴行所負之一切債務，如有下列情形之一時，經貴行事先以合理期間通知或催告，得減少對立約人之授信額度或縮短授信期間，或視為全部到期：").setListSymbol(""));
+		list7.add(new ListItem("任何一宗債務不依約付息時。").setListSymbol("(一)"));
+		list7.add(new ListItem("擔保物被查封、刑事扣押、宣告沒收或擔保物滅失、價值減少或不敷擔保債權時。").setListSymbol("(二)"));
+		list7.add(new ListItem("立約人對貴行所負債務，其實際資金用途與貴行核定用途不符時。").setListSymbol("(三)"));
+		list7.add(new ListItem("立約人之財產受強制執行或假扣押、假處分、刑事訴訟法之禁止處分或其他保全處分，致貴行有不能受償之虞者。").setListSymbol("(四)"));
+		list7.add(new ListItem("使用票據有退票紀錄者。").setListSymbol("(五)"));
+		list7.add(new ListItem("立約人於其他金融機構任何一宗債務未依約付息。").setListSymbol("(六)"));
+		list7.add(new ListItem(
+				"貴行辦理覆審時，立約人在全體金融機構之無擔保債務歸戶後之總餘額【包含信用卡、現金卡、信用貸款、因立約人未能依約提供擔保品設定擔保物權而使借款成為個人無擔保放款及「貸款餘額(擔保放款餘額加上部分擔保、副擔保貸款餘額)扣除擔保品鑑估值」之金額等】除以平均月收入大於二十二倍者。")
+						.setListSymbol("(七)"));
+
+		document.add(list7.setMarginLeft(25));
 
 		list = new List().setFont(baseFont);
 
@@ -171,6 +273,19 @@ public class Practice {
 				"在本契約授信期間內，立約人及保證人如有發生第十條以外情形以致於履債能力變差，且非貴行核准當時所得預料時，貴行得視業務需要，對授信額度及條件予以必要之調整或變更，並保留是否授貸之決定權。")
 						.setListSymbol("十二、"));
 		list.add(new ListItem("立約人及保證人同意寄存貴行之各種存款及對貴行之一切債權，除有下列情形之一者外，縱其清償期尚未屆至，貴行得以之行使抵銷權：").setListSymbol("十三、"));
+
+		document.add(list);
+
+		List list8 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list8.add(new ListItem("法令有禁止抵銷之規定者。").setListSymbol("(一)"));
+		list8.add(new ListItem("當事人有約定不得抵銷者。").setListSymbol("(二)"));
+		list8.add(new ListItem("基於無因管理或第三人因交易關係委任貴行向立約人或保證人付款者。").setListSymbol("(三)"));
+
+		document.add(list8.setMarginLeft(35));
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem("立約人對貴行負擔數宗債務時，如清償人所提出之給付不足清償全部債務，而清償人未為指定抵充債務時，除有其他約定外，由貴行指定應抵充之債務。\r\n"
 				+ "前項債務性質相異者，清償人所提出之給付，得由貴行決定其抵充之方法及順序。\r\n" + "").setListSymbol("十四、"));
 		list.add(new ListItem(
@@ -184,6 +299,17 @@ public class Practice {
 						.setListSymbol("十七、"));
 		list.add(new ListItem("保證人對於立約人基於本契約所動用之授信，均願負連帶保證責任。如立約人(即主債務人)依本契約對貴行所負之一切責任未依約履行，保證人當即負責如數清償，並同意下列事項：")
 				.setListSymbol("十八、"));
+
+		document.add(list);
+
+		List list9 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list9.add(new ListItem("貴行毋須先就擔保物受償，得逕向保證人求償。").setListSymbol("(一)"));
+		list9.add(new ListItem("保證人代主債務人清償全部債務後，依法請求貴行移轉擔保物權時，絕不因擔保物有瑕疵而持異議。").setListSymbol("(二)"));
+		document.add(list9.setMarginLeft(35));
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem(
 				"立約人、保證人及擔保物提供人依本契約所提供之擔保財產，應擔保本契約項下之全部債務(包括保證債務)，並同意作為立約人、保證人及擔保物提供人現在(包括過去所負現在尚未清償)及將來對貴行所負一切債務之擔保。")
 						.setListSymbol("十九、"));
@@ -244,16 +370,16 @@ public class Practice {
 
 		document.add(list);
 
-		List list1 = new List().setFont(baseFont);
+		List list10 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
 
-		list1.add(new ListItem(
+		list10.add(new ListItem(
 				"自簽立契約日起，立約人得依據本契約，憑存摺、取款憑條或金融卡向貴行或其他參加金融資訊系統行庫之自動化服務機器(即ATM)取款，或透過貴行之電話銀行、網路銀行、行動銀行服務系統轉帳取款，或另訂契約文件委請貴行逕由約定之存款帳戶扣償借款本息或支付款項。因而致立約人存款不足以支付時，貴行在本節授信額度內，得就其存款不足金額，由電腦自動辦理撥貸，惟貴行電腦斷線時，得暫停受理取款與撥貸。立約人並同意以貴行電腦自動辦理撥貸之紀錄為其借款本金之認定。")
 						.setListSymbol("(一)"));
-		list1.add(new ListItem(
+		list10.add(new ListItem(
 				"立約人應妥善保管存摺、印鑑、金融卡，及電話銀行、網路銀行、行動銀行系統之使用者帳號、密碼、網路金鑰等。凡取款憑條上之印鑑或簽名，經貴行以善良管理人之注意義務辨識認為與立約人留存之印鑑或簽名相符而動用貸款，或經由貴行或其他參加金融資訊系統行庫依自動化服務機器(即ATM)，認為與原鍵入之密碼相符而動用貸款，或電話銀行之語音取款密碼及帳號，經貴行電話銀行服務系統電腦中心主機或諮詢專員認為與原設定之密碼及帳號相符而動用貸款，或使用網路銀行系統以密碼取款，經貴行網路銀行、行動銀行系統辨識認為數位簽章及密碼相符而辦理貸款者，除貴行有未盡善良管理人注意義務或有其他可歸責事由外，縱令該立約人存摺、印鑑、金融卡或密碼及帳號、金鑰等有被盜用、偽造或變造等情事以致發生損失時，立約人仍願負擔一切責任。")
 						.setListSymbol("(二)"));
 
-		document.add(list1.setMarginLeft(25));
+		document.add(list10.setMarginLeft(25));
 
 		document.add(new Paragraph("第三節、有價證券(集保、優質股票)融資").addStyle(title22));
 
@@ -269,6 +395,22 @@ public class Practice {
 				"出質人所提供之擔保物，悉於臺灣集中保管結算所股份有限公司(以下簡稱集保)辦理質權設定，並依集保規定辦理有價證券設質交付帳簿劃撥作業相關事宜，擔保物明細填載於集保之有價證券質權設定帳簿劃撥申請書，並以該申請書第二聯、第三聯作為本契約之附件(第二聯由出質人留存，第三聯由貴行留存)。擔保物如有增減變更，並依貴行之參加人保管劃撥帳戶設質帳登載為準。爾後如遇擔保物時價跌落、擔保物發行公司之信用評等遭台灣經濟新報調降或其他財務營運發生不利之變化時，不問借款已否到期，立約人願負責於貴行通知之期限內補足或更換擔保物或償還借款，否則立約人對貴行所負之債務即喪失期限利益，視同全部到期，出質人同意貴行得逕行處分或變賣擔保物抵償立約人所欠本息，至於擔保物處分之方法及其價格概委託貴行全權處理，絕無異議，並以本契約為授權之證明，在債務未全部清償以前絕不撤銷委託。")
 						.setListSymbol("三、"));
 		list.add(new ListItem("出質人所提供之擔保物於授信期間價值波動時，立約人願依貴行之核貸通知書約定維持擔保物之價值，並依下列方式辦理：").setListSymbol("四、"));
+
+		document.add(list);
+
+		List list11 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list11.add(new ListItem("維持率之計算為：擔保有價證券現行市值/借款總餘額*100%。").setListSymbol("(一)"));
+		list11.add(new ListItem(
+				"因擔保物市價變動致維持率低於核貸通知書約定之比率時，由貴行通知立約人清償差額或補足擔保物至原始維持率。若經貴行通知後，立約人仍未清償差額或補足擔保物，致整戶維持率低於核貸通知書約定之比率時，貴行得(但並無義務)在公開市場上拍賣或變賣擔保物。")
+						.setListSymbol("(二)"));
+		list11.add(
+				new ListItem("若因立約人或擔保物發行公司之信用評等遭台灣經濟新報調降或其他財務營運發生不利之變化而致須變動約定之維持率時，悉依本契約約定辦理。").setListSymbol("(三)"));
+		list11.add(new ListItem("").setListSymbol("()"));
+		document.add(list11.setMarginLeft(25));
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem(
 				"凡貴行持有出質人所簽發實行質權取得質物之契約書(集保制定格式)、同意書(集保制定格式，同意由貴行處分擔保物)，出質人授權貴行對於該契約書及同意書得視實際債務情況填載日期，絕無異議。")
 						.setListSymbol("五、"));
@@ -384,6 +526,32 @@ public class Practice {
 				"立約人願由貴行依有關法令之規定及慣行之方法墊付或(及)承兌其所申請開發之信用狀。立約人除應提供輸入許可證或估價單交由貴行存執外，願以各信用狀項下貨運單據及貨品等，作為各該信用狀項下墊款及貸款之擔保，並以本契約為提供擔保及墊款或貸款之證明。")
 						.setListSymbol("四、"));
 		list.add(new ListItem("清償期限及方法：").setListSymbol("五、"));
+
+		document.add(list);
+
+		List list12 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list12.add(new ListItem(
+				"如依本契約開發遠期信用狀時，則每筆遠期信用狀項下之墊付或承兌之期限最長不得超過國外銀行押匯日或承兌日起一八○天，並以每筆遠期信用狀下匯票到期之前一日或貴行通知之到期日為每筆債務之清償日期。")
+						.setListSymbol("(一)"));
+		list12.add(new ListItem(
+				"如依本契約開發即期信用狀時，則立約人應於每筆信用狀項下貨運單據到達經貴行通知(書面或口頭)後五個營業日內回覆貴行，並於經貴行通知(書面或口頭)後十五日內將每筆墊款清償並支付利息及相關費用，墊款部份得自備外匯或借款或按償還日貴行掛牌或約定之該外幣匯率結匯償還之。但有下列各款情形之一者，其清償方法如下：")
+						.setListSymbol("(二)"));
+
+		document.add(list12.setMarginLeft(25));
+
+		List list13 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
+
+		list13.add(
+				new ListItem("如貨運單據到達而貨物尚未運到，立約人願檢具航運公司證明文件或貴行認可之證件憑核，俟貨物運到十五日內清償。但貨運單據寄達經貴行通知屆滿三十日貨物仍未運到時，立約人願立即清償。"));
+		list13.add(new ListItem("如貨物運到而貨運單據尚未寄達需申請擔保提貨時，立約人願立即清償；申請副提單背書時，亦同。"));
+		list13.add(new ListItem("如貨物分批裝運時，應即以分批貨運單據金額按信用狀金額及(或)墊款比例先行償還。"));
+		list13.add(new ListItem("如經貴行要求提前清償時，立約人願立即清償。"));
+
+		document.add(list13.setMarginLeft(50));
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem("本節授信種類項下之每筆墊款其在前條所訂應清償之期限內還款者，外幣墊款應自國外押匯日起至清償日止，按貴行之核貸通知書所載利率，未記載者則依各該幣別貴行掛牌利率，計付利息。\r\n"
 				+ "立約人延遲清償每筆墊款、貸款本息時，並自遲延日起計付遲延利息、違約金。\r\n" + "").setListSymbol("六、"));
 		list.add(new ListItem(
@@ -395,6 +563,11 @@ public class Practice {
 		list.add(new ListItem(
 				"立約人向貴行申請開發之每筆信用狀下貨運單據及(或)匯票，如經貴行認為在表面上尚屬無訛，立約人應即接受。該項單據及(或)匯票，縱事後證實其非真實或屬偽造或有其他瑕疵，概與貴行及押匯行無涉，對於貴行或押匯行支付款項，立約人不得提出異議，並依本契約之規定清償。")
 						.setListSymbol("九、"));
+
+		document.add(list);
+
+		list = new List().setFont(baseFont);
+
 		list.add(new ListItem(
 				"每筆信用狀之傳遞錯誤、遲延或解釋上之錯誤，及關於單據或單據項下所載貨物或貨物之品質、數量、價值等之有全部或一部滅失、遲延、未抵達交貨地，以及貨物無論在運輸中或抵達後或未經保險或保額不足，或因承辦商或任何第三者之阻滯、扣留及其他因素各等情事，以致喪失或損害或遲到時，均與貴行或押匯行無涉，在以上任何情形之下，對於貴行所墊付款項，立約人不得提出異議，概依本契約約定清償。")
 						.setListSymbol("十一、"));
@@ -434,6 +607,12 @@ public class Practice {
 
 		document.add(new Paragraph("第參章、連帶保證條款").addStyle(title22));
 
+		document.add(new Paragraph("保證人今向貴行承諾，").addStyle(normal11));
+		document.add(new Paragraph("凡立約人於現在(包括過去所負、現在尚未清償)及將來").addStyle(normal11));
+		document.add(new Paragraph(
+				"對貴行所負之借款、透支、貼現、買入光票、墊款、承兌、委任保證、開發信用狀、進出口押匯、保證、票據、信用卡契約、應收帳款承購契約、衍生性金融商品交易契約及特約商店契約等其他各種債務，以約定之最高限額為限，願與立約人負連帶清償責任，並遵守下列條款：")
+						.addStyle(normal11));
+
 		list = new List().setFont(baseFont);
 
 		list.add(new ListItem(
@@ -447,15 +626,82 @@ public class Practice {
 
 		document.add(list);
 
-		document.add(new Paragraph("第肆章、個別商議條款").addStyle(title22));
+		List list14 = new List().setFont(baseFont).setListSymbol(ListNumberingType.DECIMAL);
 
-		document.add(new Paragraph("附件一：核貸通知書").addStyle(title22));
+		list14.add(new ListItem("保證人得隨時終止本保證條款，但保證人須於一個月前以書面通知貴行。若保證人未為先行之通知，致貴行因保證條款終止而受有損害者，保證人同意賠償貴行所受之損害。")
+				.setListSymbol("(一)"));
+		list14.add(new ListItem("保證人終止本保證條款後，仍須對終止前立約人所負之債務，負連帶保證責任。").setListSymbol("(二)"));
+		list14.add(new ListItem(
+				"本保證條款為最高限額保證，保證債務金額隨授信動撥情形而有變化，保證人並應勾選是否願意接收貴行每年一次以書面通知函告知保證人當月基準日所負保證債務金額。如未勾選，視為願接收相關保證債務金額訊息通知。")
+						.setListSymbol("(三)"));
+
+		document.add(list14.setMarginLeft(25));
+
+		document.add(new Paragraph("第肆章、個別商議條款").addStyle(title22));
 
 		float[] colWidths = new float[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 		Table table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
 		Cell cell = new Cell();
+
+		cell = new Cell(1, 50).add(new Paragraph("以下條款如有約定，請勾選：有勾選到的項目才帶入").addStyle(normal11));
+		table.addCell(cell);
+
+		List list15 = new List().setFont(baseFont);
+
+		list15.add(new ListItem("「透支、存摺存款融資」特別約定條款：").setListSymbol("一、"));
+
+		cell = new Cell(1, 50).add(list15);
+		table.addCell(cell);
+
+		List list16 = new List().setFont(baseFont);
+		list16.add(new ListItem(
+				"透支、存摺存款融資之約定帳戶為：貴行☐支票存款第                                號帳戶或☐活期性存款第                                                                      帳戶。")
+						.setListSymbol("(一)"));
+		list16.add(new ListItem("立約人若為自然人，且申請為無足額擔保之信用借款時，同意不使用金融卡取款方式動用貸款。").setListSymbol("(二)"));
+		list16.add(new ListItem("立約人☐同意☐不同意使用存摺與取款憑條以外之金融卡取款及電話銀行、網路銀行、行動銀行轉帳取款方式動用貸款。").setListSymbol("(三)"));
+
+		cell = new Cell(1, 50).add(list16.setMarginLeft(25));
+		table.addCell(cell);
+
+		list15 = new List().setFont(baseFont);
+
+		list15.add(new ListItem("「有價證券(集保、優質股票)融資」特別約定條款：\r\n" + "出質人茲同意並約定，於本契約下所提供（包含其後陸續提供）之有價證券，設定最高限額質權\r\n"
+				+ "新臺幣                                                元予貴行。\r\n" + "").setListSymbol("二、"));
+
+		list15.add(new ListItem("「備償專戶」特別約定條款：").setListSymbol("三、"));
+
+		cell = new Cell(1, 50).add(list15);
+		table.addCell(cell);
+
+		List list17 = new List().setFont(baseFont);
+		list17.add(new ListItem(
+				"立約人同意並授權貴行以立約人名義開立備償專戶(即活期存款第                         號帳戶)，該專戶係貴行為處理立約人所背書轉讓予貴行，經不同客戶簽發之融資票據，及立約人或第三人存入備償之現金款項，得以區分處理帳務手續，達到節省記帳及計算之目的而設立。立約人同意開戶申請書及印鑑卡之立約人簽章(親簽)欄位與留存印鑑處，僅留存貴行備償放款專用章。")
+						.setListSymbol("(一)"));
+		list17.add(new ListItem("立約人同意將存入該備償專戶之款項及前述融資票據兌現後之票款，設定最高限額質權\r\n"
+				+ "☐新臺幣                                  元、☐(幣別)                                   元予貴行，以擔保立約人與貴行因一切授信往來所生債務之本金、利息、違約金及應負擔之費用，非經貴行同意，立約人不得動用專戶內之存款，如因動用專戶存款致餘額低於前開最高限額範圍時，立約人同意嗣後存入專戶之款項於最高限額範圍內仍設定質權予貴行，以共同擔保立約人所積欠貴行之前述或嗣後所生之一切債務，於立約人對貴行之授信往來到期或依其他特約約定視為全部到期而未清償時，立約人茲此同意全權授權貴行得行使質權逕行提領備償專戶內之存款主張優先受償，立約人絕無異議。\r\n"
+				+ "").setListSymbol("(二)"));
+//		list17.add(new ListItem());
+		cell = new Cell(1, 50).add(list17.setMarginLeft(25));
+		table.addCell(cell);
+
+		list15 = new List().setFont(baseFont);
+
+		list15.add(new ListItem("其他約定條款：").setListSymbol("四、"));
+
+		cell = new Cell(1, 50).add(list15);
+		table.addCell(cell);
+
+		cell = new Cell(1, 50).add(new Paragraph("立約人及出質人充分瞭解本章內容後簽章：").addStyle(normal11));
+		table.addCell(cell);
+
+		document.add(table);
+
+		document.add(new Paragraph("附件一：核貸通知書").addStyle(title22));
+
+		table = new Table(UnitValue.createPercentArray(colWidths)).useAllAvailableWidth();
+		cell = new Cell();
 
 		cell = new Cell(1, 50).add(new Paragraph("核准日期：    年   月   日").addStyle(normal11));
 		table.addCell(cell);
@@ -904,6 +1150,7 @@ public class Practice {
 		table.addCell(cell);
 
 		cell = new Cell(1, 1).add(new Paragraph("留存印鑑處").addStyle(normal11));
+		cell.setKeepTogether(true);
 		table.addCell(cell);
 
 		cell = new Cell(1, 49).add(new Paragraph("").addStyle(normal11));
